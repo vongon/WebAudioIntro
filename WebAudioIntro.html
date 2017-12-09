@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf‐8">
+  <title>Hello web audio</title>
+</head>
+<body>
+  <button onclick="playSequence()">start my sequence</button>
+</body>
+  <script>
+
+    WAVEFORM_TYPES = {
+      triangle: 'triangle',
+      sine: 'sine',
+      square: 'square',
+    }
+    FREQUENCIES = {
+      C: 261.63,
+      D: 293.66,
+      E: 329.63,
+      F: 349.23,
+      G: 392.00,
+      A: 440.00,
+      B: 493.88
+    };
+    var audioCtx = new (window.AudioContext || window.webkitAudioContext);
+    playSequence = function() {
+
+      // Try making a sequence of notes using the WAVEFORM_TYPES and FREQUENCIES defined above that lasts about 10 seconds
+      // Important, you need to recreate an osciallotor everytime you use it!
+      // ------------------------------------------------
+      // YOUR CODE HERE //
+      console.log('starting sequence!');
+      var oscillator = audioCtx.createOscillator();
+      oscillator.connect(audioCtx.destination);
+      oscillator.frequency.value = FREQUENCIES['C'];
+      oscillator.type = WAVEFORM_TYPES['sine'];
+      oscillator.start();
+      oscillator.stop(audioCtx.currentTime + 1);
+      // ------------------------------------------------
+    }
+  </script>
+</html>
